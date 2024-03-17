@@ -1,0 +1,154 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'appsongaz/assets/favicon/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'appsongaz/assets/favicon/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'appsongaz/assets/favicon/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'appsongaz/assets/favicon/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'appsongaz/assets/favicon/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'appsongaz/assets/favicon/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'appsongaz/assets/favicon/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'appsongaz/assets/favicon/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'appsongaz/assets/favicon/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="{% static 'appsongaz/assets/favicon/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'appsongaz/assets/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'appsongaz/assets/favicon/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'appsongaz/assets/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'appsongaz/assets/favicon/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'appsongaz/assets/favicon/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Vendors styles-->
+    <link rel="stylesheet" href="{% static 'appsongaz/vendors/simplebar/css/simplebar.css' %}">
+    <link rel="stylesheet" href="{% static 'appsongaz/css/vendors/simplebar.css' %}">
+    <!-- Main styles for this application-->
+    <link href="{% static 'appsongaz/css/style.css' %}" rel="stylesheet">
+    <!-- We use those styles to show code examples, you should remove them in your application.-->
+    <link href="{% static 'appsongaz/css/examples.css' %}" rel="stylesheet">
+    <link href="{% static 'appsongaz/vendors/@coreui/chartjs/css/coreui-chartjs.css' %}" rel="stylesheet">
+</head>
+<style>
+
+    .sidebar-brand p {
+        font-weight: bolder;
+        font-size: 30px;
+        margin-top: 15px;
+    }
+
+    .sidebar-brand p span {
+        color: #2eb85c;
+    }
+
+    .card {
+        border-radius: 20px;
+    }
+</style>
+<body>
+<div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+    <div class="sidebar-brand d-none d-md-flex">
+        <p>Sonel<span>Docs</span></p>
+    </div>
+    <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+        <li class="nav-title"><h2>Browse</h2></li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'upload_file' %}">
+                <h5>Upload File</h5>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'all_files' %}">
+                <h5>All Files</h5>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="wrapper d-flex flex-column min-vh-100 bg-light">
+    <header class="header header-sticky mb-4">
+        <div class="container-fluid">
+            <button class="header-toggler px-md-0 me-md-3" type="button"
+                    onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red"
+                     class="bi bi-arrow-bar-left text-dark" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5"/>
+                </svg>
+
+            </button>
+            <a class="header-brand d-md-none" href="#">
+                <img src="{% static 'appsongaz/gratisography-reindeer-dog-1170x780.jpg' %}">
+            </a>
+            <ul class="header-nav d-none d-md-flex">
+                <li class="nav-item">
+                    <h3><a class="nav-link" href="#">{{ user.username|title }}</a></h3>
+                </li>
+            </ul>
+            <ul class="header-nav ms-3">
+                <li class="nav-item dropdown">
+                    <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#"
+                       role="button" aria-haspopup="true" aria-expanded="false">
+                        <div class="avatar avatar-md">
+                            <img class="avatar-img"
+                                 src="{% static 'appsongaz/user-img.png' %}"
+                                 alt="..."></div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end pt-0">
+                        <div class="dropdown-header bg-light py-2">
+                            <div class="fw-semibold">Settings</div>
+                        </div>
+                        <a class="dropdown-item" href="{% url 'edit_profile' %}">
+                            <i class="bi bi-person-bounding-box text-info mx-3"></i>
+                            Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        {% if user.is_authenticated %}
+                            <a class="dropdown-item " href="{% url 'logout' %}">
+                                <i class="bi bi-box-arrow-left text-danger mx-3"></i>
+                                Logout
+                            </a>
+                        {% endif %}
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer class="footer text-center">
+        <div class="">
+            Sonelgaz Documents
+            © 2024
+        </div>
+    </footer>
+</div>
+<!-- CoreUI and necessary plugins-->
+<script src="{% static 'appsongaz/vendors/@coreui/coreui/js/coreui.bundle.min.js' %}"></script>
+<script src="{% static 'appsongaz/vendors/simplebar/js/simplebar.min.js' %}"></script>
+<script src="{% static 'appsongaz/vendors/chart.js/js/chart.min.js' %}"></script>
+<script src="{% static 'appsongaz/vendors/@coreui/chartjs/js/coreui-chartjs.js' %}"></script>
+<script src="{% static 'appsongaz/vendors/@coreui/utils/js/coreui-utils.js' %}"></script>
+<script src="{% static 'appsongaz/js/main.js' %}"></script>
+
+</body>
+</html>

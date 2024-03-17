@@ -1,0 +1,33 @@
+{% extends 'appsongaz/base.html' %}
+{% block content %}
+    <div class="body flex-grow-1 px-3">
+        <div class="container-lg">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header text-center"><h2>Update Your Profile</h2></div>
+                        <div class="card-body">
+                            <form action="{% url 'edit_profile' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{ form.as_p }}
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-12 d-flex justify-content-center">
+                                        <button type="submit" class="btn btn-success btn-lg rounded-pill px-5 py-3">
+                                            Update Profile
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

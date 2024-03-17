@@ -1,0 +1,56 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+</head>
+<body>
+<div class="container">
+    <div class="img">
+        <img src="{% static 'appsongaz/img/register.png' %}">
+    </div>
+    <div class="login-content">
+        <form method="post">
+            {% csrf_token %}
+            <img src="{% static 'appsongaz/img/profile.png' %}">
+            <h2 class="title">Welcome</h2>
+
+            {% if form.non_field_errors %}
+                <p style="color: red;">{{ form.non_field_errors }}</p>
+            {% endif %}
+
+            {% for field in form %}
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        {{ field }}
+                    </div>
+                </div>
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <p style="color: red;">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+
+            <input type="submit" class="btn" value="Register">
+
+            <div class="p-button">
+                <p style="display: inline;">You already have an account ?</p>
+                <a href="{% url 'login' %}" style="display: inline; color: #2eb85c; font-weight: bolder">Login</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

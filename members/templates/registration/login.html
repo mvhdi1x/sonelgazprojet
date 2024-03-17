@@ -1,0 +1,74 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+
+</head>
+<style>
+    .wave{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	z-index: -1;
+}
+</style>
+<body>
+<div class="container">
+    <img class="wave" src="{% static 'appsongaz/img/wave.png' %}">
+    <div class="img">
+        <img src="{% static 'appsongaz/img/Logo.png' %}">
+    </div>
+    <div class="login-content">
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <img src="{% static 'appsongaz/img/user.jpg' %}">
+            <h2 class="title">Welcome</h2>
+            {% if error_message %}
+                <p style="color: red;">{{ error_message }}</p>
+            {% endif %}
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="div">
+                    <input placeholder="User name" type="text" class="input" name="username" required>
+                </div>
+            </div>
+            <div class="input-div pass">
+                <div class="i">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="div">
+                    <input placeholder="Password" type="password" class="input" name="password" required>
+                </div>
+            </div>
+            <input type="submit" class="btn" value="Login">
+            <div class="p-button">
+                <p style="display: inline;">You don't have an account ?</p>
+                <a href="{% url 'register' %}" style="display: inline; color: #2eb85c; font-weight: bolder">Register</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+<!-- JAVASCRIPTS DASHBOARD PAGE -->
+
+<script src="{% static 'js/dashboard.js' %}"></script>
+
+<!-- JAVASCRIPTS DOCUMENT PAGE -->
+
+<script src="{% static 'js/document.js' %}"></script>
+
+</body>
+</html>

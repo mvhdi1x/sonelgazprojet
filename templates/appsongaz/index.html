@@ -1,0 +1,114 @@
+{% extends 'appsongaz/base.html' %}
+{% block title %}All Files{% endblock %}
+
+{% block content %}
+    <div class="body flex-grow-1 px-3">
+        <div class="container-lg">
+            <div class="body flex-grow-1 px-3">
+                <div class="container-lg">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+                                <div class="card-body">
+                                    <h3 class="card-title text-center">
+                                        All Users
+                                        <i class="bi bi-people text-success mx-5"></i>
+                                    </h3>
+                                    <h4 class="card-text my-5">
+                                        Users Registered:
+                                        <span class="fs-4">{{ all_users.count }}</span>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+                                <div class="card-body">
+                                    <h3 class="card-title text-center">
+                                        All Uploaded Files
+                                        <i class="bi bi-folder-symlink-fill text-success mx-3"></i>
+                                    </h3>
+                                    <h4 class="card-text my-5">
+                                        All Files:
+                                        <span class="fs-4">{{ all_files.count }}</span>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="car"></div>
+            <div class="card mb-4">
+                <div class="card-header text-center"><h2>All Files Uploaded</h2></div>
+                <div class="card-body">
+
+                    <div class="example">
+                        <div class="tab-content rounded-bottom">
+                            <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1008">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">File name</th>
+                                        <th scope="col">Owner</th>
+                                        <th scope="col">Extension</th>
+                                        <th scope="col">Size</th>
+                                        <th scope="col">Date</th> 
+                                        <th scope="col">Update</th>                                       
+                                        <th scope="col">Download</th>                             
+                                        <th scope="col">Delete</th>
+                                        
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for file in all_files %}
+                                        <tr>
+                                            <th scope="row">{{ file.id }}</th>
+                                            <td>{{ file.filename|truncatechars:15 }}</td>
+                                            <td>{{ file.user.username }}</td>
+                                            <td>{{ file.file.name|slice:'-4:' }}</td>
+                                            <td>{{ file.file.size|filesizeformat }}</td>
+                                            <td>{{ file.uploaded_at }}</td>
+                                            <td class="text-center">
+                                                <a class="text-center" href="{% url 'update' file.id %}">
+                                                    {% if file.user.id == user.id or user.is_superuser%}
+                                                        <i class="bi bi-pencil-square text-success fs-5 text-center"></i>
+                                                    {% endif %}
+                                                </a>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <a href="{% url 'download_file' file.id %}">
+                                                    <i class="bi bi-file-earmark-arrow-down fs-5 text-success"></i>
+                                                </a>
+                                            </td>
+
+                                            <td class="text-center">
+                                                {% if file.user.id == user.id or user.is_superuser %}
+                                                    <a href="{% url 'delete' file.id %}">
+                                                        <i class="bi bi-trash text-danger fs-5"></i>
+                                                    </a>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <style>
+        #download-icon{
+            margin-left: 50px;
+        }
+    </style>
+{% endblock %}
