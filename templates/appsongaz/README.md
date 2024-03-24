@@ -1,9 +1,9 @@
 > Push project to Github:
     git init
     git commit -m "first commit"
-    git branch -M main
+    git branch -M master
     git remote add origin https://github.com/SaberHardy/YourProjectName.git
-    git push -u origin main
+    git push -u origin master
 
 In case you modifed something in the project and you want to update your github repo:
 
